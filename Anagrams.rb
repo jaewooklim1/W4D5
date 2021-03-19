@@ -6,11 +6,11 @@ def first_anagram?(string1, string2)  # space/time o(n!)
     string1.chars.to_a.permutation.map(&:join).include?(string2)
 end
 
-# p second_anagram?("gizmo", "sally")    #=> false
-# p second_anagram?("elvis", "lives")    #=> true
+# p first_anagram?("gizmo", "sally")    #=> false
+# p first_anagram?("elvis", "lives")    #=> true
 
 def second_anagram?(string1, string2)   #o(n^2)
-
+    return false if string1.length!=string2.length
     splitString2 = string2.split("")
     string1.each_char do |char|
         if splitString2.include?(char)
@@ -45,7 +45,7 @@ end
 # p fourth_anagram?("gizmo", "sally")    #=> false
 # p fourth_anagram?("elvis", "lives")    #=> true
 
-def fifth_anagram?(string1, string2) # Time: O(n) * O(n) => O(n) Space = O(1)
+def fifth_anagram?(string1, string2) # Time: O(n) * O(n) * O(n) => O(n) Space = O(1)
     count = Hash.new(0)
     string1.split("").each {|char1| count[char1]+=1}
     string2.split("").each {|char2| count[char2]-=1}

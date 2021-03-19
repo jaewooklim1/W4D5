@@ -11,28 +11,30 @@ def brute_force_two_sum?(arr, target_sum)
     false
 end
 
-arr = [0, 1, 5, 7]
+arr = [0, 1, 5, -1, 3, 4]
 # p brute_force_two_sum?(arr, 6) # => should be true
 # p brute_force_two_sum?(arr, 10) # => should be false
-
-def sorting_two_sum?(arr, target_sum)    
+require 'byebug'
+def sorting_two_sum?(arr, target_sum)    #marginally better than brute force. 
     sorted = arr.sort
-
-    i = 0
-    
-    while i < sorted.length
-        j = i+1
-        while j < sorted.length
-            return true if sorted[i] + sorted[j] == target_sum
-            j += 1
+    sorted.each_with_index do |ele,idx|
+        dupl = sorted.dup
+        current = dupl.delete_at(idx) # [1,2,4,5,6,7]
+        unless dupl.bsearch {|ele2| ele2 + current == target_sum}.nil?
+            return true
         end
-        i += 1
     end
+    
+ 
 
     false
 end
 
 p sorting_two_sum?(arr, 6) # => should be true
-p sorting_two_sum?(arr, 10) # => should be false
+p sorting_two_sum?([1,2,3,4,5], 10) # => should be false
 
-def sorting_two_sum_two?(arr, target_sum)    
+
+
+# p second_sorting_two_sum?(arr, 6) # => should be true
+# p second_sorting_two_sum?(arr, 10) # => should be false
+
