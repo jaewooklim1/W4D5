@@ -4,7 +4,6 @@
 
 def first_anagram?(string1, string2)  # space/time o(n!)
     string1.chars.to_a.permutation.map(&:join).include?(string2)
-
 end
 
 # p second_anagram?("gizmo", "sally")    #=> false
@@ -27,14 +26,14 @@ end
 # p second_anagram?("elvis", "lives")    #=> true
 
 
-def third_anagram?(string1, string2)    # Ruby uses
+def third_anagram?(string1, string2)    # Ruby uses quicksort. Time: o(n*log(n)) space = o(n)
     string1.split("").sort == string2.split("").sort
 end
 
 # p third_anagram?("gizmo", "sally")    #=> false
 # p third_anagram?("elvis", "lives")    #=> true
 
-def fourth_anagram?(string1, string2)
+def fourth_anagram?(string1, string2) # Time: O(n) * O(n) => O(n) Space = O(1)
     hash1 = Hash.new(0)
     hash2 = Hash.new(0)
     string1.split("").each {|char1| hash1[char1]+=1}
@@ -46,7 +45,7 @@ end
 # p fourth_anagram?("gizmo", "sally")    #=> false
 # p fourth_anagram?("elvis", "lives")    #=> true
 
-def fifth_anagram?(string1, string2)
+def fifth_anagram?(string1, string2) # Time: O(n) * O(n) => O(n) Space = O(1)
     count = Hash.new(0)
     string1.split("").each {|char1| count[char1]+=1}
     string2.split("").each {|char2| count[char2]-=1}
